@@ -1,7 +1,7 @@
-"""Provide the primary functions."""
 import numpy as np
 
-def neglogpost_cryobife(G,kappa,Pmat):
+
+def neglogpost_cryobife(G, kappa, Pmat):
     """
     Negative log posterior of 1D discretized free-energy profile given a set
     of image probabilities, from cryo-BIFE paper.
@@ -31,43 +31,21 @@ def neglogpost_cryobife(G,kappa,Pmat):
     with Z_1 the discrete normalization of rho over the nodes,
     and prior from the Methods (MCMC) section, p.10, except with an extra
     factor of kappa not in that paper.
-
-    Authors: Julian Giraldo-Barreto, Pilar Cossio; docs and rewrite
-    by Alex Barnett. 10/8/21
     """
-    M = np.size(G)
-    mathcalG = sum(np.diff(G)**2)  # note matches paper notation, not confusing
-    logprior = kappa * np.log(1/mathcalG**2)    # note kappa scales *log* prior
+    mathcal_G = sum(np.diff(G)**2)  # note matches paper notation, not confusing
+    log_prior = kappa * np.log(1/mathcal_G**2)    # note kappa scales *log* prior
     rho = np.exp(-G)           # density vec
     rho = rho/np.sum(rho)      # normalize, Eq.(8)
-    loglik = np.sum(np.log(np.dot(Pmat,rho)))    # sum here since iid images
-    neg_log_posterior = -(loglik + logprior)
-    return(neg_log_posterior)             # check logprior sign error?
-
-
-def canvas(with_attribution=True):
-    """
-    Placeholder function to show example docstring (NumPy format).
-
-    Replace this function and doc string for your own project.
-
-    Parameters
-    ----------
-    with_attribution : bool, Optional, default: True
-        Set whether or not to display who the quote is from.
-
-    Returns
-    -------
-    quote : str
-        Compiled string including quote and optional attribution.
-    """
-
-    quote = "The code is but a canvas to our imagination."
-    if with_attribution:
-        quote += "\n\t- Adapted from Henry David Thoreau"
-    return quote
+    log_likelihood = np.sum(np.log(np.dot(Pmat, rho)))    # sum here since iid images
+    neg_log_posterior = -(log_likelihood + log_prior)
+    return(neg_log_posterior)             # check log_prior sign error?
 
 
 if __name__ == "__main__":
-    # Do something if this file is invoked on its own
-    print(canvas())
+    kappa = 2.0   # prior strength
+    M = 20    # nodes
+    num_images = 1000  # images
+    G = np.arange(M)/M   # dummy free energy profile
+    Pmat = np.random.rand(num_images, M)   # dummy P_{BioEM} matrix (probabilities in [0,1])
+    Neg_Post = neglogpost_cryobife(G, kappa, Pmat)
+    print("Negative Posterior:", Neg_Post)

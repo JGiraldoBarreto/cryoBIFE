@@ -22,10 +22,10 @@ import cryoBIFE
 
 # -- Project information -----------------------------------------------------
 
-project = 'ProjectName'
-copyright = ("2021, Julian Giraldo. Project structure based on the "
+project = 'cryoBIFE'
+copyright = ("2021, Julian Giraldo and coauthors. Project structure based on the "
              "Computational Molecular Science Python Cookiecutter version 1.6")
-author = 'Julian Giraldo'
+author = 'Julian Giraldo, Alex Barnett, Erik Thiede, Pilar Cossio'
 
 # The short X.Y version
 version = ''
@@ -144,7 +144,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'cryoBIFE.tex', 'ProjectName Documentation',
+    (master_doc, 'cryoBIFE.tex', 'cryoBIFE Documentation',
      'cryoBIFE', 'manual'),
 ]
 
@@ -154,7 +154,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'cryoBIFE', 'ProjectName Documentation',
+    (master_doc, 'cryoBIFE', 'cryoBIFE Documentation',
      [author], 1)
 ]
 
@@ -165,7 +165,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'cryoBIFE', 'ProjectName Documentation',
+    (master_doc, 'cryoBIFE', 'cryoBIFE Documentation',
      author, 'cryoBIFE', 'cryoBIFE optimization tests',
      'Miscellaneous'),
 ]

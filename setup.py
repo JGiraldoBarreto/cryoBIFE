@@ -1,12 +1,12 @@
 """
-ProjectName
-cryoBIFE optimization tests
+cryoBIFE
+cryoBIFE optimization routines
 """
 import sys
 from setuptools import setup, find_packages
 import versioneer
 
-short_description = "cryoBIFE optimization tests".split("\n")[0]
+short_description = "cryoBIFE optimization routines".split("\n")[0]
 
 # from https://github.com/pytest-dev/pytest-runner#conditional-requirement
 needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
@@ -22,7 +22,7 @@ except:
 setup(
     # Self-descriptive entries which should always be present
     name='cryoBIFE',
-    author='Julian Giraldo',
+    author='Julian Giraldo, Alex Barnett, Erik Thiede, Pilar Cossio',
     author_email='julian.giraldob@udea.edu.co',
     description=short_description,
     long_description=long_description,

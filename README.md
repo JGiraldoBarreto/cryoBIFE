@@ -1,11 +1,10 @@
-ProjectName
+cryoBIFE
 ==============================
 [//]: # (Badges)
-[![GitHub Actions Build Status](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/cryoBIFE/workflows/CI/badge.svg)](https://github.com/REPLACE_WITH_OWNER_ACCOUNT/cryoBIFE/actions?query=workflow%3ACI)
-[![codecov](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/ProjectName/branch/master/graph/badge.svg)](https://codecov.io/gh/REPLACE_WITH_OWNER_ACCOUNT/ProjectName/branch/master)
+[![GitHub Actions Build Status](https://github.com/JGiraldoBarreto/cryoBIFE/workflows/CI/badge.svg)](https://github.com/JGiraldoBarreto/cryoBIFE/actions?query=workflow%3ACI)
 
 
-cryoBIFE optimization tests
+Various routines for cryoBIFE.
 
 ### Copyright
 

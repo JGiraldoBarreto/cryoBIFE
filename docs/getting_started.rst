@@ -1,4 +1,6 @@
 Getting Started
 ===============
 
-This page details how to get started with ProjectName. 
+Currently, cryoBIFE is installable directly from github by cloning the repository and running the following in the root directory::
+
+    pip install -e .
