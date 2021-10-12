@@ -8,7 +8,7 @@ Various routines for cryoBIFE.
 
 ### Copyright
 
-Copyright (c) 2021, Julian Giraldo
+Copyright (c) 2021, Julian Giraldo and coauthors.
 
 
 #### Acknowledgements
