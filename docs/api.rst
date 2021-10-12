@@ -5,3 +5,4 @@ API Documentation
    :toctree: autosummary
 
    cryoBIFE.canvas
+   cryoBIFE.neglogpost_cryobife
