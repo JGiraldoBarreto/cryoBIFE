@@ -32,7 +32,12 @@
  *     p(G) = PROD_{m in 2:M} normal(G[m] | G[m - 1], 1 / sqrt(lambda))
  *
  * The additive invariance of G is identified in the conventional way
- * by pinning G[M] = 0. 
+ * by pinning G[M] = 0.  The precision parameter lambda is given a prior
+ *
+ *     lambda ~ lognormal(0, 3)
+ *
+ * with a 95% interval of (.0028, 360), corresponding to a 95% interval for
+ * scale of (.053, 19).
  *
  * The model could be extended to calculate the posterior probability
  * distribution over states for the images.
