@@ -22,7 +22,7 @@ except:
 setup(
     # Self-descriptive entries which should always be present
     name='cryoBIFE',
-    author='Julian Giraldo, Alex Barnett, Erik Thiede, Pilar Cossio',
+    author='Julian Giraldo, Alex Barnett, Erik Thiede, Pilar Cossio, Bob Carpenter, Brian Ward',
     author_email='julian.giraldob@udea.edu.co',
     description=short_description,
     long_description=long_description,

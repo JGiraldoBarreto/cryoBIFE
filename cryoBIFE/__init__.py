@@ -1,4 +1,4 @@
-"""cryoBIFE optimization tests"""
+"""PyCryoBIFE"""
 
 # Add imports here
 from .cryoBIFE import *
