@@ -81,7 +81,6 @@
  * to yield the density as implemented in Stan code.  The prior
  * factors to 
  *
- * 
  * log p(G) = log INTEGRAL_0^inf log p(G, lambda)
  *          = log(1 / mathcalG^2)
  *          = -2 log(mathcalG)
