@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def neglogpost_cryobife(G, kappa, Pmat):
+def neglogpost_cryobife(G, kappa, Pmat, log_prior_fxn=None):
     """
     Negative log posterior of 1D discretized free-energy profile given a set
     of image probabilities, from cryo-BIFE paper.
@@ -32,13 +32,24 @@ def neglogpost_cryobife(G, kappa, Pmat):
     and prior from the Methods (MCMC) section, p.10, except with an extra
     factor of kappa not in that paper.
     """
-    mathcal_G = sum(np.diff(G)**2)  # note matches paper notation, not confusing
-    log_prior = kappa * np.log(1/mathcal_G**2)    # note kappa scales *log* prior
+    if log_prior_fxn is None:  # Default is the prior from the paper
+        log_prior_fxn = integrated_prior
+    log_prior = kappa * log_prior_fxn(G)
     rho = np.exp(-G)           # density vec
     rho = rho/np.sum(rho)      # normalize, Eq.(8)
     log_likelihood = np.sum(np.log(np.dot(Pmat, rho)))    # sum here since iid images
     neg_log_posterior = -(log_likelihood + log_prior)
     return(neg_log_posterior)             # check log_prior sign error?
+
+
+def integrated_prior(G):
+    mathcal_G = sum(np.diff(G)**2)
+    log_prior = np.log(1/mathcal_G**2)    # note kappa scales *log* prior
+    return log_prior
+
+
+def normal_prior(G):
+    return - sum(np.diff(G)**2)
 
 
 if __name__ == "__main__":
