@@ -1,6 +1,7 @@
 # Run as python3 optimize_Gaussian_LogPost.py
 
 import numpy as np
+from numpy.linalg import inv
 import numpy.random as r
 from cryoBIFE.Calculate_PostProb_Toymodel import Post_prob
 from importlib import resources
@@ -44,12 +45,17 @@ def Gaussian_Images(Path, Num_Images_Matrix, factor, sigma):
     return(Gauss_Image_vector)
 
 
-def sample_grid_data(factor=1.0, sigma=1.0):
+def sample_grid_data(factor=1.0, sigma=1.0, N_total=10000, inverse_T=None):
     # Generate_grid_data
     # Grid = np.loadtxt("data/grid")  # Gridpoints of model
     Grid = _import_text_from_data_folder("grid")
     Grid = Grid - np.ones((len(Grid), 2))  # correction to match python notation.
     Num_images = _import_text_from_data_folder("Num_Images_grid-3well")
+    if inverse_T is not None:
+        Num_images = Num_images.astype('float') ** inverse_T
+    Num_images *= (N_total / np.sum(Num_images))
+    Num_images = np.round(Num_images)
+
     G_Vec = Gaussian_Images(Grid, Num_images, factor, sigma)
 
     # Load Sample Strings
@@ -60,7 +66,7 @@ def sample_grid_data(factor=1.0, sigma=1.0):
     Orange = _import_text_from_data_folder('Orange')
     Orange = Orange - np.ones((len(Orange), 2))  # correction to match python notation.
     Post_Matrix_Orange = Post_prob(Orange, G_Vec, sigma)
-    return G_Vec, Grid, Num_images, Post_Matrix_Black, Post_Matrix_Orange
+    return (G_Vec, Grid, Num_images), (Black, Post_Matrix_Black), (Orange, Post_Matrix_Orange)
 
 
 if __name__ == "__main__":
