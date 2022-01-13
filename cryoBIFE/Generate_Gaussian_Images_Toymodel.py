@@ -48,17 +48,10 @@ def Gaussian_Images(Path, Num_Images_Matrix, factor, sigma):
 def sample_grid_data(factor=1.0, sigma=1.0, N_total=10000, inverse_T=None):
     # Generate_grid_data
     # Grid = np.loadtxt("data/grid")  # Gridpoints of model
-    Grid = _import_text_from_data_folder("grid")
-    Grid = Grid - np.ones((len(Grid), 2))  # correction to match python notation.
-    Num_images = _import_text_from_data_folder("Num_Images_grid-3well")
-    if inverse_T is not None:
-        Num_images = Num_images.astype('float') ** inverse_T
-    Num_images *= (N_total / np.sum(Num_images))
-    Num_images = np.round(Num_images)
-
-    G_Vec = Gaussian_Images(Grid, Num_images, factor, sigma)
 
     # Load Sample Strings
+    Grid, Num_Images = get_num_images(N_total, inverse_T)
+    G_Vec = Gaussian_Images(Grid, Num_Images, factor, sigma)
     Black = _import_text_from_data_folder('Black')
     Black = Black - np.ones((len(Black), 2))  # correction to match python notation.
     Post_Matrix_Black = Post_prob(Black, G_Vec, sigma)
@@ -66,7 +59,18 @@ def sample_grid_data(factor=1.0, sigma=1.0, N_total=10000, inverse_T=None):
     Orange = _import_text_from_data_folder('Orange')
     Orange = Orange - np.ones((len(Orange), 2))  # correction to match python notation.
     Post_Matrix_Orange = Post_prob(Orange, G_Vec, sigma)
-    return (G_Vec, Grid, Num_images), (Black, Post_Matrix_Black), (Orange, Post_Matrix_Orange)
+    return (G_Vec, Grid, Num_Images), (Black, Post_Matrix_Black), (Orange, Post_Matrix_Orange)
+
+
+def get_num_images(N_total, inverse_T):
+    Grid = _import_text_from_data_folder("grid")
+    Grid = Grid - np.ones((len(Grid), 2))  # correction to match python notation.
+    Num_Images = _import_text_from_data_folder("Num_Images_grid-3well")
+    if inverse_T is not None:
+        Num_Images = Num_Images.astype('float') ** inverse_T
+    Num_Images *= (N_total / np.sum(Num_Images))
+    Num_Images = np.round(Num_Images)
+    return Grid, Num_Images
 
 
 if __name__ == "__main__":
