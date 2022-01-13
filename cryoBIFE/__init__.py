@@ -2,6 +2,7 @@
 
 # Add imports here
 from .cryoBIFE import *
+from .cryoBIFE_pytorch import neglogpost_cryobife_pytorch
 from . import Generate_Gaussian_Images_Toymodel
 from . import Calculate_PostProb_Toymodel
 

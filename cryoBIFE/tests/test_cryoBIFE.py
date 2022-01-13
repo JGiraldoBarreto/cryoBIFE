@@ -29,11 +29,12 @@ def test_torch_numpy_agreement():
     Pmat = np.random.rand(Imgs, M)   # dummy P_{BioEM} matrix (probabilities in [0,1])
     kappa = 1.0
 
-    numpy_negpost = cryoBIFE.neglogpost_cryobife(G, kappa, Pmat)
+    numpy_negpost = cryoBIFE.neglogpost_cryobife(G, kappa, Pmat,
+                                                 log_prior_fxn=cryoBIFE.normal_prior)
     # torch_negpost = cryoBIFE.neglogpost_cryobife_pytorch(torch.from_numpy(G).double(),
     #                                                      kappa,
     #                                                      torch.from_numpy(Pmat).double())
-    torch_negpost = cryoBIFE_pytorch.neglogpost_cryobife_pytorch(torch.from_numpy(G),
+    torch_negpost = cryoBIFE.neglogpost_cryobife_pytorch(torch.from_numpy(G),
                                                          kappa,
                                                          torch.from_numpy(Pmat))
     torch_negpost = torch_negpost.numpy()
